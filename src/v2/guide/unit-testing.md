@@ -43,27 +43,27 @@ import MyComponent from 'path/to/MyComponent.vue'
 describe('MyComponent', () => {
   // 检查原始组件选项
   it('has a created hook', () => {
-    expect(typeof MyComponent.created).toBe('function')
+    expect(typeof MyComponent.created).to.equal('function')
   })
 
   // 评估原始组件选项中的函数的结果
   it('sets the correct default data', () => {
-    expect(typeof MyComponent.data).toBe('function')
+    expect(typeof MyComponent.data).to.equal('function')
     const defaultData = MyComponent.data()
-    expect(defaultData.message).toBe('hello!')
+    expect(defaultData.message).to.equal('hello!')
   })
 
   // 检查 mount 中的组件实例
   it('correctly sets the message when created', () => {
     const vm = new Vue(MyComponent).$mount()
-    expect(vm.message).toBe('bye!')
+    expect(vm.message).to.equal('bye!')
   })
 
   // 创建一个实例并检查渲染输出
   it('renders the correct message', () => {
     const Ctor = Vue.extend(MyComponent)
     const vm = new Ctor().$mount()
-    expect(vm.$el.textContent).toBe('bye!')
+    expect(vm.$el.textContent).to.equal('bye!')
   })
 })
 ```
@@ -101,11 +101,11 @@ describe('MyComponent', () => {
   it('renders correctly with different props', () => {
     expect(getRenderedText(MyComponent, {
       msg: 'Hello'
-    })).toBe('Hello')
+    })).to.equal('Hello')
 
     expect(getRenderedText(MyComponent, {
       msg: 'Bye'
-    })).toBe('Bye')
+    })).to.equal('Bye')
   })
 })
 ```
@@ -122,7 +122,7 @@ it('updates the rendered message when vm.message updates', done => {
 
   // 在状态改变后和断言 DOM 更新前等待一刻
   Vue.nextTick(() => {
-    expect(vm.$el.textContent).toBe('foo')
+    expect(vm.$el.textContent).to.equal('foo')
     done()
   })
 })
